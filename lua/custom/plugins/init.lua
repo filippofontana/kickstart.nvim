@@ -90,4 +90,14 @@ return {
     -- use opts = {} for passing setup options
     -- this is equalent to setup({}) function
   },
+
+  -- undotree
+  {
+    'jiaoshijie/undotree',
+    dependencies = 'nvim-lua/plenary.nvim',
+    config = true,
+    keys = { -- load the plugin only when using it's keybinding:
+      { '<leader>u', "<cmd>lua require('undotree').toggle()<cr>" },
+    },
+  },
 }

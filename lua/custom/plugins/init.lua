@@ -100,4 +100,39 @@ return {
       { '<leader>u', "<cmd>lua require('undotree').toggle()<cr>", { desc = 'Open undotree' } },
     },
   },
+
+  -- vim-cmp for cmdline
+  {
+    'hrsh7th/cmp-cmdline',
+    event = 'CmdlineEnter',
+    dependencies = {
+      'hrsh7th/cmp-buffer',
+    },
+    config = function()
+      local cmp = require 'cmp'
+
+      -- `:` cmdline setup.
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' },
+        }, {
+          {
+            name = 'cmdline',
+            option = {
+              ignore_cmds = { 'Man', '!' },
+            },
+          },
+        }),
+      })
+
+      -- `/` cmdline setup.
+      cmp.setup.cmdline('/', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = 'buffer' },
+        },
+      })
+    end,
+  },
 }

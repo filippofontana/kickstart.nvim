@@ -101,38 +101,56 @@ return {
     },
   },
 
-  -- vim-cmp for cmdline
+  -- oil.nvim
   {
-    'hrsh7th/cmp-cmdline',
-    event = 'CmdlineEnter',
-    dependencies = {
-      'hrsh7th/cmp-buffer',
-    },
+    'stevearc/oil.nvim',
+    -- Optional dependencies
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      local cmp = require 'cmp'
-
-      -- `:` cmdline setup.
-      cmp.setup.cmdline(':', {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = 'path' },
-        }, {
-          {
-            name = 'cmdline',
-            option = {
-              ignore_cmds = { 'Man', '!' },
-            },
-          },
-        }),
-      })
-
-      -- `/` cmdline setup.
-      cmp.setup.cmdline('/', {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = 'buffer' },
+      require('oil').setup {
+        columns = {
+          'icon',
+          -- "permissions",
+          -- "size",
+          -- "mtime",
         },
-      })
+        keymaps = {
+          ['<C-h>'] = false,
+          ['<M-h>'] = {
+            'actions.select',
+            opts = { horizontal = true },
+            desc = 'Open the entry in a horizontal split',
+          },
+        },
+        view_options = {
+          -- Show files and directories that start with "."
+          show_hidden = true,
+        },
+      }
+      -- Open parent directory in parent window
+      vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+
+      -- Open parent directory in floating window
+      vim.keymap.set('n', '<space>-', require('oil').toggle_float, { desc = 'Open parent directory in floating window' })
     end,
+  },
+
+  -- vim-tmux-navigator
+  {
+    'christoomey/vim-tmux-navigator',
+    cmd = {
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+      'TmuxNavigatePrevious',
+    },
+    keys = {
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+    },
   },
 }

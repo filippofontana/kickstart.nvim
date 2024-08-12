@@ -952,5 +952,8 @@ require('lazy').setup({
   },
 })
 
+-- Add custom commands (is this the best place to put this instruction?)
+require 'custom.commands.init'
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

@@ -3,6 +3,7 @@
 --
 -- See the kickstart.nvim README for more information
 return {
+  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
   {
     'ThePrimeagen/harpoon',
     event = 'VimEnter',

@@ -3,7 +3,14 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
+    init = function()
+      vim.cmd.colorscheme 'catppuccin'
+    end,
+  },
   {
     'ThePrimeagen/harpoon',
     event = 'VimEnter',

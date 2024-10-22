@@ -161,4 +161,13 @@ return {
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
   },
+
+  -- nvim-treesitter-context
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    event = 'VeryLazy',
+    config = function()
+      require('treesitter-context').setup()
+    end,
+  },
 }

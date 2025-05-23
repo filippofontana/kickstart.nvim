@@ -124,11 +124,19 @@ return {
         },
         keymaps = {
           ['<C-h>'] = false,
+          ['<C-s>'] = false,
+          ['<C-l>'] = false,
           ['<M-h>'] = {
             'actions.select',
             opts = { horizontal = true },
             desc = 'Open the entry in a horizontal split',
           },
+          ['<M-s>'] = {
+            'actions.select',
+            opts = { vertical = true },
+            desc = 'Open the entry in a vertical split',
+          },
+          ['<M-l>'] = 'actions.refresh',
         },
         view_options = {
           -- Show files and directories that start with "."

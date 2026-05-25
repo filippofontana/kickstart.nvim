@@ -778,6 +778,7 @@ do
       local enabled_filetypes = {
         -- lua = true,
         -- python = true,
+        markdown = true,
       }
       if enabled_filetypes[vim.bo[bufnr].filetype] then
         return { timeout_ms = 500 }
@@ -796,6 +797,10 @@ do
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      markdown = { 'mdformat', 'mdslw' },
+    },
+    formatters = {
+      mdslw = { prepend_args = { '--stdin-filepath', '$FILENAME' } },
     },
   }
 

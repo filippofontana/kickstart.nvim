@@ -780,7 +780,8 @@ do
         -- python = true,
         markdown = true,
       }
-      if enabled_filetypes[vim.bo[bufnr].filetype] then
+      if enabled_filetypes[vim.bo[bufnr].filetype]
+        and not (vim.g.disable_autoformat or vim.bo[bufnr].disable_autoformat) then
         return { timeout_ms = 500 }
       else
         return nil

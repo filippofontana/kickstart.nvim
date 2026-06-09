@@ -171,6 +171,9 @@ do
   -- instead raise a dialog asking if you wish to save the current file(s)
   -- See `:help 'confirm'`
   vim.o.confirm = true
+
+  -- NOTE: this hack is required to make diffget working as usual while waiting an upstream fix
+  vim.opt.diffopt:remove 'linematch:40'
 end
 
 -- ============================================================

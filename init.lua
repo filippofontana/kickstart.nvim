@@ -790,7 +790,15 @@ do
   }
 
   -- Automatically install LSPs and related tools to stdpath for Neovim
-  require('mason').setup {}
+  -- NOTE: in order to parse YAML files locally, remember to launch
+  -- `:MasonInstall yq` on a fresh install!
+  -- (see https://github.com/mason-org/mason-registry/blob/main/CONTRIBUTING.md#testing)
+  require('mason').setup {
+    registries = {
+      "file:~/.config/nvim/custom-mason-registry",
+      "github:mason-org/mason-registry",
+    },
+  }
 
   -- Translates between nvim-lspconfig server names and mason.nvim package names (e.g. lua_ls <-> lua-language-server)
   require('mason-lspconfig').setup {
